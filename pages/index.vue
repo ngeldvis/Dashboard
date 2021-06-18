@@ -3,16 +3,16 @@
 
     <!-- Navigation Drawer -->
     <v-navigation-drawer v-model="drawer.status" app>
-      <navigation-menu @showCopied="showCopiedSnackbar" />
+      <navigation-menu @showCopied="showSnackbar('Copied Email to Clipboard')" />
     </v-navigation-drawer>
 
+    <!-- App Header -->
+    <app-header :title="title" @toggleNav="drawer.status = !drawer.status;" />
+
+    <!-- Main Webpage Content -->
     <v-main>
       <v-card tile elevation="0" color="#F3F5F9" height="100%" width="100%">
-        <!-- App Header -->
-        <app-header :title="title" @toggleNav="drawer.status = !drawer.status;" />
-
-        <!-- Main Webpage Content -->
-        <dashboard />
+          <dashboard />
       </v-card>
     </v-main>
 
@@ -57,9 +57,15 @@ export default {
       }
     }
   },
+  mounted: function() {
+    
+  },
+  created: function() {
+
+  },
   methods: {
-    showCopiedSnackbar() {
-      this.snackbar.message = 'Copied Email to Clipboard';
+    showSnackbar(message) {
+      this.snackbar.message = message;
       this.snackbar.status = true;;
     }
   }

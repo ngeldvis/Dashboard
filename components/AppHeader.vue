@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar flat>
+  <v-app-bar app flat color="white" fixed elevate-on-scroll>
     <v-app-bar-nav-icon @click="toggleNavDrawer"></v-app-bar-nav-icon>
 
     <v-toolbar-title>{{ title }}</v-toolbar-title>
@@ -17,7 +17,7 @@
     <v-btn icon>
       <v-icon>mdi-dots-vertical</v-icon>
     </v-btn>
-  </v-toolbar>
+  </v-app-bar>
 </template>
 
 <script>

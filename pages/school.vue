@@ -3,7 +3,7 @@
 
     <!-- Navigation Drawer -->
     <v-navigation-drawer v-model="drawer.status" app>
-      <navigation-menu @showCopied="showCopiedSnackbar" />
+      <navigation-menu @showCopied="showSnackbar('Copied Email to Clipboard')" />
     </v-navigation-drawer>
 
     <v-main>
@@ -56,8 +56,8 @@ export default {
     }
   },
   methods: {
-    showCopiedSnackbar() {
-      this.snackbar.message = 'Copied Email to Clipboard';
+    showSnackbar(message) {
+      this.snackbar.message = message;
       this.snackbar.status = true;;
     }
   }
