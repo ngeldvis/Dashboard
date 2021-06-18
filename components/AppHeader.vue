@@ -1,6 +1,6 @@
 <template>
   <v-toolbar flat>
-    <v-app-bar-nav-icon @click="toggleNav"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon @click="toggleNavDrawer"></v-app-bar-nav-icon>
 
     <v-toolbar-title>{{ title }}</v-toolbar-title>
 
@@ -25,12 +25,13 @@ export default {
   props: [
     'title'
   ],
-  data: () => {
-    status: true
+  data() {
+    return {
+    }
   },
   methods: {
-    toggleNav(event) {
-      this.$emit('navbar', !status)
+    toggleNavDrawer() {
+      this.$emit('toggleNav');
     }
   }
 }

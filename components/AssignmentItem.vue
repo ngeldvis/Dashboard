@@ -1,6 +1,6 @@
 <template>
-    <v-list-item>
-        <v-list-item-content>
+    <v-list-item class="item">
+        <v-list-item-content class="item-content">
             <v-list-item-title>{{ info.name }}</v-list-item-title>
             <v-list-item-subtitle>{{ info.course }} - {{ getDate(info.due) }}</v-list-item-subtitle>
         </v-list-item-content>
@@ -40,5 +40,17 @@
 </script>
 
 <style lang="scss" scoped>
+.item {
+    position: relative;
 
+    &-content:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        left: 0;
+        width: 3px;
+        background-color: #1976d2;
+    }
+}
 </style>

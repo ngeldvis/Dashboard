@@ -1,19 +1,66 @@
 <template>
-  <app-header :title="title"/>
+  <div class="db">
+
+    <!-- Navigation Drawer -->
+    <v-navigation-drawer v-model="drawer.status" app>
+      <navigation-menu @showCopied="showCopiedSnackbar" />
+    </v-navigation-drawer>
+
+    <v-main>
+      <v-card tile elevation="0" color="#F3F5F9" height="100%" width="100%">
+        <!-- App Header -->
+        <app-header :title="title" @toggleNav="drawer.status = !drawer.status;" />
+
+        <!-- Main Webpage Content -->
+        
+      </v-card>
+    </v-main>
+
+    <!-- Message Snackbar -->
+    <v-snackbar v-model="snackbar.status" :timeout="2000">
+      {{ snackbar.message }}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="primary"
+          text
+          v-bind="attrs"
+          @click="snackbar.status = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+
+  </div>
 </template>
 
 <script>
-import AppHeader from '~/components/AppHeader.vue';
+import NavigationMenu from '@/components/NavigationMenu.vue';
+import AppHeader from '@/components/AppHeader.vue';
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    NavigationMenu
   },
   data() {
     return {
-      title: "Finance",
-    };
+      title: 'Finance',
+      drawer: {
+        status: true
+      },
+      snackbar: {
+        status: false,
+        message: ""
+      }
+    }
   },
+  methods: {
+    showCopiedSnackbar() {
+      this.snackbar.message = 'Copied Email to Clipboard';
+      this.snackbar.status = true;;
+    }
+  }
 };
 </script>
 

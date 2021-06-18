@@ -1,8 +1,5 @@
 <template>
-    <v-card class="container"
-        outlined
-        elevation="0"
-    >
+    <div>
         <h2>Upcoming Assignments</h2>
         <v-list dense>
             <assignment-item
@@ -11,7 +8,7 @@
                 :info="assignment"
             />
         </v-list>
-    </v-card>
+    </div>
 </template>
 
 <script>

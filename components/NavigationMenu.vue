@@ -1,15 +1,21 @@
 <template>
-    <v-navigation-drawer v-model="status" app>
+    <div>
 
-      <div class="nav-header">
+        <div class="nav-header">
             <img class="nav-header-pfp" src="~/assets/images/pfp.jpeg" alt="" />
             <p class="nav-header-name">Nigel Davis</p>
-            <p id="nav-email" class="nav-header-email">ngeldvis@gmail.com</p>
+            <p 
+                id="nav-email" 
+                class="nav-header-email" 
+                @click="copyEmail('#nav-email')"
+                title="Copy Email"
+            >ngeldvis@gmail.com</p>
         </div>
 
         <v-list dense>
             <v-list-item-group>
             <v-list-item 
+                color="primary"
                 v-for="(item, i) in navItems" 
                 :key="i"
                 nuxt 
@@ -28,7 +34,7 @@
         </v-list-item-group>
       </v-list>
 
-    </v-navigation-drawer>
+    </div>
 </template>
 
 <script>
@@ -56,17 +62,35 @@
                     },
                     {
                         icon: "mdi-account",
-                        text: "Personal",
+                        text: "Personal",   
                         link: "/personal"
                     },
                 ],
-                drawer: true,
             };
         },
+        methods: {
+            copyEmail(id) {
+                this.snackbar = true;
+                this.$emit('showCopied')
+
+                let $temp= $('<input>');
+                $('body').append($temp);
+
+                $temp.val($(id).text()).select();
+                document.execCommand('copy');
+                $temp.remove();
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
 .nav-header {
   padding: 20px;
   display: flex;
